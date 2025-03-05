@@ -1,54 +1,104 @@
-import 'the-new-css-reset/css/reset.css';
-import '../styles/style.css';
+window.addEventListener('DOMContentLoaded', () => {
+  const operationKeys = document.querySelectorAll('.digit, .operator');
+  const resetBtn = document.querySelector('#reset');
+  const display = document.querySelector('.current-value');
+  const deleteBtn = document.querySelector('#del');
+  const equalBtn = document.querySelector('#equal');
+  const themeSwitchers = document.querySelectorAll(
+    '.theme-slider input[type="radio"]',
+  );
 
-import viteLogo from '../assets/images/vite.svg';
-import javascriptLogo from '../assets/images/javascript.svg';
+  function getLastCharacter() {
+    return display.textContent[display.textContent.length - 1];
+  }
 
-const dependencies = [
-  'ESlint',
-  'Prettier',
-  'PostCSS',
-  'PostCSS Nesting',
-  'Autoprefixer',
-  'CSS Nano',
-  'CSS Reset',
-];
+  function updateDisplay(value, eraseCurentValue = false) {
+    const isOperatorTest = /\D$/;
+    if (eraseCurentValue) {
+      display.textContent = '';
+    } else if (
+      isOperatorTest.test(getLastCharacter()) &&
+      isOperatorTest.test(value) &&
+      value !== getLastCharacter()
+    ) {
+      display.textContent = display.textContent.slice(0, -1);
+    }
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Vanilla Vite!</h1>
-    <h2>Template by <cite><a class="author" href="https://github.com/Barata-Ribeiro" target="_blank" rel="noopener noreferrer">Barata-Ribeiro</a></cite></h2>
-    <div class="card">
-      <button id="counter" type="button"></button>
-      <a class="gitRepo" href="https://github.com/Barata-Ribeiro/vite-vanilla-js-template" target="_blank" rel="noopener noreferrer">Repository</a>
-    </div>
-    <div class="tags">
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more about Vite.js.
-    </p>
-  </div>
-`;
+    display.textContent += value;
+  }
 
-const setupCounter = (element) => {
-  let counter = 0;
-  const counterElement = element;
-  const setCounter = (count) => {
-    counter = count;
-    counterElement.innerHTML = `count is ${counter}`;
-  };
-  element.addEventListener('click', () => setCounter(counter + 1));
-  setCounter(0);
-};
+  function isTriggeredByOperatorKey(e) {
+    return e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/';
+  }
 
-setupCounter(document.querySelector('#counter'));
+  function displayedValueIsZeroOrWhitespace(node) {
+    return (
+      node.textContent === '0' ||
+      node.textContent.trim() === '' ||
+      node.innerHTML === '&nbsp;'
+    );
+  }
+  operationKeys.forEach((key) => {
+    key.addEventListener('click', () => {
+      if (
+        key.classList.contains('operator') &&
+        (displayedValueIsZeroOrWhitespace(display) ||
+          getLastCharacter() === key.textContent)
+      )
+        return;
+      updateDisplay(key.textContent);
+    });
+  });
 
-document.querySelector('.tags').innerHTML = dependencies
-  .map((dependency) => `<p>${dependency}</p>`)
-  .join('');
+  deleteBtn.addEventListener('click', () => {
+    if (display.innerHTML === '&nbsp;') return;
+    updateDisplay(display.textContent.slice(0, -1), true);
+  });
+
+  equalBtn.addEventListener('click', () => {
+    if (display.innerHTML === '&nbsp;' || display.textContent.trim() === '')
+      return;
+    updateDisplay(
+      eval(display.textContent.trimStart().replace(/x/g, '*')),
+      true,
+    );
+  });
+
+  resetBtn.addEventListener('click', () => {
+    display.innerHTML = '&nbsp;';
+  });
+
+  window.addEventListener('keydown', (e) => {
+    const isOperatorKey = isTriggeredByOperatorKey(e);
+    if (isOperatorKey || (e.key >= 0 && e.key <= 9)) {
+      if (
+        isOperatorKey &&
+        (displayedValueIsZeroOrWhitespace(display) ||
+          getLastCharacter() === e.key)
+      ) {
+        return;
+      }
+      updateDisplay(e.key);
+    } else if (e.key === 'Backspace') {
+      updateDisplay(display.textContent.slice(0, -1), true);
+    } else if (e.key === 'Enter') {
+      if (display.innerHTML === '&nbsp;' || display.textContent.trim() === '')
+        return;
+      updateDisplay(eval(display.textContent.trimStart()), true);
+    }
+  });
+
+  if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    document.documentElement.className = 'theme-3';
+    document.querySelector('#theme-3').checked = true;
+  } else {
+    document.documentElement.className = 'theme-1';
+    document.querySelector('#theme-1').checked = true;
+  }
+
+  themeSwitchers.forEach((themeSwitcher) => {
+    themeSwitcher.addEventListener('change', () => {
+      document.documentElement.className = themeSwitcher.value;
+    });
+  });
+});

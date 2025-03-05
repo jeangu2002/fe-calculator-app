@@ -1,5 +1,5 @@
 {
-  "name": "vite-vanilla-js-template",
+  "name": "calculator-app",
   "description": "ViteJS starter template for vanilla JavaScript with some basic dependencies.",
   "version": "2.0.0",
   "type": "module",
@@ -39,6 +39,7 @@
     "postcss": "^8.5.3",
     "postcss-nesting": "^13.0.1",
     "prettier": "^3.5.3",
+    "sass": "^1.85.1",
     "vite": "6.2.0",
     "vite-plugin-eslint": "^1.8.1"
   },
