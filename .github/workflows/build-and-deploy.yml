@@ -35,3 +35,4 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           folder: dist
+          branch: gh-pages
