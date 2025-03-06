@@ -4,6 +4,7 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   publicDir: 'public',
   root: './',
+  base: '/fe-calculator-app/',
   build: {
     outDir: 'dist',
     rollupOptions: {
@@ -26,9 +27,9 @@ export default defineConfig({
     minify: 'esbuild',
   },
   plugins: [
-    /* eslint({
+    eslint({
       cache: false,
       fix: true,
-    }), */
+    }),
   ],
 });
