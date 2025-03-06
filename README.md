@@ -10,13 +10,8 @@ This is a solution to the [Calculator app challenge on Frontend Mentor](https://
   - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
-  - [What I learned](#what-i-learned)
-  - [Continued development](#continued-development)
-  - [Useful resources](#useful-resources)
 - [Author](#author)
 - [Acknowledgments](#acknowledgments)
-
-**Note: Delete this note and update the table of contents based on what sections you keep.**
 
 ## Overview
 
@@ -53,3 +48,9 @@ Users should be able to:
 
 - Frontend Mentor - @jeangu2002 (https://www.frontendmentor.io/profile/jeangu2002)
 - LinkedIn - @jean-gustave-nsabiyera-b8018951(https://lu.linkedin.com/in/jean-gustave-nsabiyera-b8018951)
+
+## Acknowledgments
+
+- [JamesIves](https://github.com/JamesIves)'s github pages deploy action was really helpful
+- [Barata Ribeiro](https://github.com/Barata-Ribeiro)'s vite community [template](https://github.com/Barata-Ribeiro/vite-vanilla-js-template)
+- [Codeium](https://codeium.com/windsurf)
