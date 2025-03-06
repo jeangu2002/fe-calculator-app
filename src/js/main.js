@@ -59,6 +59,7 @@ window.addEventListener('DOMContentLoaded', () => {
     if (display.innerHTML === '&nbsp;' || display.textContent.trim() === '')
       return;
     updateDisplay(
+      /* eslint-disable-next-line no-eval */
       eval(display.textContent.trimStart().replace(/x/g, '*')),
       true,
     );
@@ -84,6 +85,7 @@ window.addEventListener('DOMContentLoaded', () => {
     } else if (e.key === 'Enter') {
       if (display.innerHTML === '&nbsp;' || display.textContent.trim() === '')
         return;
+      /* eslint-disable-next-line no-eval */
       updateDisplay(eval(display.textContent.trimStart()), true);
     }
   });
