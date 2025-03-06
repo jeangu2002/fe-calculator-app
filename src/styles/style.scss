@@ -133,8 +133,13 @@ body {
 
 .theme-slider {
   display: flex;
+  align-items: center;
   gap: 1rem;
   text-transform: uppercase;
+  .theme-label {
+    font-size: 0.8em;
+    translate: 0 2px;
+  }
   .slider {
     background-color: var(--cl-key-reset);
     width: 5rem;
