@@ -30,8 +30,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [solution](https://github.com/jeangu2002/fe-calculator-app)
+- Live Site URL: [calculator app](https://jeangu2002.github.io/fe-calculator-app/)
 
 ## My process
 
