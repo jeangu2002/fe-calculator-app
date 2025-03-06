@@ -46,8 +46,8 @@ Users should be able to:
 
 ## Author
 
-- Frontend Mentor - @jeangu2002 (https://www.frontendmentor.io/profile/jeangu2002)
-- LinkedIn - @jean-gustave-nsabiyera-b8018951(https://lu.linkedin.com/in/jean-gustave-nsabiyera-b8018951)
+- Frontend Mentor - [@jeangu2002](https://www.frontendmentor.io/profile/jeangu2002)
+- LinkedIn - [@jean-gustave-nsabiyera-b8018951](https://lu.linkedin.com/in/jean-gustave-nsabiyera-b8018951)
 
 ## Acknowledgments
 
